@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <title>Document</title>
+    <!-- Vendor styles plugins -->
+    <!-- build:css css/plugins.css -->
+    <link rel="stylesheet" href="vendor/reset-css/reset.css">
+    <!-- endbuild -->
+    <!-- Styles application -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <link href="../../../../bower_components/select2/dist/css/select2.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/style.css" inline>
+</head>
+<body>
+
+    <!-- Модальное окно cкачать прайс-лист -->
+    <div class="modal fade" id="getList" tabindex="-1" aria-labelledby="getList" aria-hidden="true">
+       <div class="modal-dialog modal-dialog-centered">
+          <div class="modal__content">
+             <div class="modal__header">
+                <div class="modal__header-title style1">
+                   Оставьте свои данные для получения прайс-листа
+                </div>
+             </div>
+    
+             <div class="modal__body">
+                <form class="modal__form">
+                   <label class="modal__form-group">
+                      <div class="modal__form-label style3">
+                         Ваше имя:<span>*</span>
+                      </div>
+                      <input required class="modal__form-input style4" type="text" placeholder="Валерий">
+                   </label>
+    
+                   <label class="modal__form-group">
+                      <div class="modal__form-label style3">
+                         Ваш e-mail:<span>*</span>
+                      </div>
+                      <input required class="modal__form-input style4" type="email" placeholder="quazoops@gmail.com">
+                   </label>
+    
+                   <label class="modal__form-group">
+                      <div class="modal__form-label style3">
+                         Ваш телефон:<span>*</span>
+                      </div>
+                      <input required class="modal__form-input style4 mask-phone" type="tel" placeholder="+7 (999) 222-11-11">
+                   </label>
+    
+                   <input type="submit" class="modal__form-button button button_outline close" data-dismiss="modal" aria-label="Close" value="Получить прайс-лист" data-toggle="modal" data-target="#getListOk">
+                </form>
+             </div>
+    
+             <div class="modal__footer">
+                <p class="modal__footer-text style4">
+                   Нажимая кнопку “Получить прайс-лист”, вы соглашаетесь с <a href="#">правилами обработки</a> ваших персональных данных.
+                </p>
+             </div>
+          </div>
+       </div>
+    </div>
+    
+    <!-- Модальное окно cкачать прайс-лист OK -->
+    <div class="modal fade" id="getListOk" tabindex="-1" aria-labelledby="getListOk" aria-hidden="true">
+       <div class="modal-dialog modal-dialog-centered">
+          <div class="modal__content modal__content_ok">
+    
+             <div class="modal__header modal__header_ok">
+                <button type="button" class="modal__header-close close" data-dismiss="modal" aria-label="Close">
+                   <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="modal__header-title modal__header-title_ok
+                 style1">
+                   Заявка отправлена!
+                </div>
+                <div class="modal__header-subtitle modal__header-subtitle_ok style2">
+                   Спасибо, наш менеджер свяжется с вами в ближайшее время
+                </div>
+             </div>
+    
+          </div>
+       </div>
+    </div>
+    
+    <!-- Обратный звонок -->
+    <div class="modal fade" id="getPhone" tabindex="-1" aria-labelledby="getPhone" aria-hidden="true">
+       <div class="modal-dialog modal-dialog-centered">
+          <div class="modal__content">
+             <div class="modal__header">
+                <div class="modal__header-title style1">
+                   Оставьте свои данные для получения прайс-листа
+                </div>
+                <div class="modal__header-subtitle style2">
+                   Чтобы уточнить заказ
+                </div>
+             </div>
+    
+             <div class="modal__body">
+                <form class="modal__form">
+                   <label class="modal__form-group">
+                      <div class="modal__form-label style3">
+                         Ваше имя:<span>*</span>
+                      </div>
+                      <input required class="modal__form-input style4" type="text" placeholder="Валерий">
+                   </label>
+    
+                   <label class="modal__form-group">
+                      <div class="modal__form-label style3">
+                         Ваш телефон:<span>*</span>
+                      </div>
+                      <input required class="modal__form-input style4 mask-phone" type="tel" placeholder="+7 (999) 222-22-11">
+                   </label>
+    
+                   <input type="submit" class="modal__form-button modal__form-button_phone button button_outline close" data-dismiss="modal"
+                      aria-label="Close" value="Купить в один клик" data-toggle="modal" data-target="#getPhoneOk">
+                </form>
+             </div>
+    
+             <div class="modal__footer">
+                <p class="modal__footer-text modal__footer-text_phone style4">
+                   Нажимая кнопку “Получить прайс-лист”, вы соглашаетесь с <a href="#">правилами обработки</a> ваших
+                   персональных данных.
+                </p>
+             </div>
+          </div>
+       </div>
+    </div>
+    
+    <!-- Обратный звонок OK -->
+    <div class="modal fade" id="getPhoneOk" tabindex="-1" aria-labelledby="getPhoneOk" aria-hidden="true">
+       <div class="modal-dialog modal-dialog-centered">
+          <div class="modal__content modal__content_ok">
+    
+             <div class="modal__header modal__header_ok">
+                <button type="button" class="modal__header-close modal__header-close_phone close" data-dismiss="modal" aria-label="Close">
+                   <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="modal__header-title modal__header-title_ok style1">
+                   Заявка отправлена!
+                </div>
+                <div class="modal__header-subtitle modal__header-subtitle_ok style2">
+                   Спасибо за название того, чего
+                </div>
+             </div>
+    
+          </div>
+       </div>
+    </div>
+    
+    <!-- Добавлен в корзину -->
+    <div class="modal fade" id="addBasket" tabindex="-1" aria-labelledby="addBasket" aria-hidden="true">
+       <div class="modal-dialog modal-dialog-centered">
+          <div class="modal__content modal__content_basket">
+             <div class="modal__header modal__header_basket">
+                
+                <div class="modal__header-subtitle modal__header-subtitle_basket style3">
+                   Товар добавлен в корзину
+                </div>
+    
+                <button type="button" class="modal__header-close modal__header-close_basket close" data-dismiss="modal" aria-label="Close">
+                   <span aria-hidden="true">&times;</span>
+                </button>
+             </div>
+    
+             <div class="modal__body">
+                <div class="modal__body-img">
+                   <img src="img/catalog/tovar.jpg" alt="tovar">
+                </div>
+                <div class="modal__body-subtitle modal__body-subtitle_basket style4">
+                   Название товар в
+                   две строки
+                </div>
+                <a href="#" class="modal__body-button button button_outline close" data-dismiss="modal" aria-label="Close">
+                   Перейти в корзину
+                </a>
+             </div>
+    
+             
+          </div>
+       </div>
+    </div>
+    
+    
+    <header class="header">
+        <div class="header__wrapper default-container">
+    
+            <div class="header-mobille">
+                <div class="header-mobille__button">
+                    <span></span>
+                </div>
+                <div class="header-mobille__link mobille-menu">
+                    <nav>
+                        <ul class="header-mobille__link-items">
+                            <li class="header-mobille__link-item"><a href="catalog.html">Каталог</a></li>
+                            <li class="header-mobille__link-item"><a href="#">Акции</a></li>
+                            <li class="header-mobille__link-item"><a href="#">Блог</a></li>
+                            <li class="header-mobille__link-item"><a href="#">Контакты</a></li>
+                            
+                        </ul>
+    
+                        <ul class="header-mobille__link-contacts">
+                            <li class="header-mobille__link-contact">
+                                <a href="tel:+7 (999)-222-11-00">+7 (999)-222-11-00</a>
+                            </li>
+                            <li class="header-mobille__link-contact header-mobille__link-contact_green">
+                                <a href="#" data-toggle="modal" data-target="#getPhone">Обратный звонок</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            
+            
+            <div class="header__menu">
+                <div class="header__logo">
+    
+                    <div class="header-tablet">
+                        <div class="header-tablet__auth-phone">
+                            <img src="img/header/phone.png" alt="">
+                            <a href="tel:+7 (499) 112-09-77">+7 (499) 112-09-77</a>
+                        </div>
+                    </div>
+    
+                    <div class="header-mobille">
+                        <div class="header-mobille__img">
+                            <a href="index.html"><img src="img/header/logo320.png" alt="LAZETI"></a>
+                        </div>
+                    </div>
+    
+                    <a href="index.html"><img src="img/header/logo.png" alt="LAZETI"></a>
+                </div>
+                <div class="header__link">
+                    <nav>
+                        <ul class="header__link-items">
+                            <li class="header__link-item"><a href="catalog.html">Каталог</a></li>
+                            <li class="header__link-item"><a href="#">Акции</a></li>
+                            <li class="header__link-item"><a href="#">Блог</a></li>
+                            <li class="header__link-item"><a href="#">Контакты</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="header__auth">
+                <div class="header__auth-wrapper">
+                    <div class="header__auth-shop">
+                        <svg class="icon-svg icon-svg-shop shop"><use xlink:href="img/sprite.svg#shop"></use></svg>
+                        <span id=shop-number><a href="#">0</a></span>
+                    </div>
+                    <div class="header__auth-decktop">
+                        <div class="header__auth-phone">
+                            <img src="img/header/phone.png" alt="">
+                            <a href="tel:+7 (499) 112-09-77">+7 (499) 112-09-77</a>
+                        </div>
+                        <div class="header__auth-callback">
+                            <a href="#" data-toggle="modal" data-target="#getPhone">Обратный звонок</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+
+        <section class="introduction">
+            <div class="default-container">
+                <div class="introduction__wrapper">
+
+                    <h1 class="introduction__title style1">
+                        Профессиональные маникюрные инструменты ручной заточки от производителя
+                    </h1>
+
+                    <div class="introduction__text style3">
+                        Безупречная заточка для качественного и быстрого маникюра
+                    </div>
+
+                    <div class="introduction__buttons">
+
+                        <div class="introduction__button button button_green">
+                            <a href="#">Скачать каталог</a>
+                        </div>
+
+                        <div class="introduction__button button button_outline">
+                            <a href="#" data-toggle="modal" data-target="#getList">
+                                Получить прайс-лист
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="guarantee">
+            <div class="default-container">
+                <div class="guarantee__wrapper">
+                    <div class="guarantee__title style1">
+                        Гарантия качества
+                    </div>
+                    <div class="guarantee__items">
+                        <div class="guarantee__item-wrapper">
+                            <div class="guarantee__item">
+                                Точное соответствие заявленным характеристикам: длине лезвия и твердости стали
+                            </div>
+                        </div>
+                        <div class="guarantee__item-wrapper">
+                            <div class="guarantee__item">
+                                Каждый инструмент проходит 3 стадии контроля качества: две на производстве и одну во время упаковки
+                            </div>
+                        </div>
+                        <div class="guarantee__item-wrapper">
+                            <div class="guarantee__item">
+                                Тщательная настройка, заточка и смазка инструмента 
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="benefits">
+            <div class="default-container">
+                <div class="benefits__wrapper">
+                    <div class="benefits__title style1">
+                        Почему инструменты Lazeti лучше других?
+                    </div>
+                    <div class="benefits__customs-wrapper">
+                        <div class="benefits__left">
+                            <div class="benefits__left-items">
+                                <div class="benefits__left-item">
+                                    <div class="add"></div>
+                                </div>
+
+                                <div class="benefits__left-item">
+                                    Высокая твердость инструмена способствует длительному сохранению остроты инструмента
+                                    <div class="add"></div>
+                                </div>
+
+                                <div class="benefits__left-item">
+                                    Высоколегировання
+                                    нержавеющая сталь
+                                    <div class="add"></div>
+                                </div>
+
+                                <div class="benefits__left-item">
+                                    <div class="add"></div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="benefits__right">
+                            <div class="benefits__right-items">
+                                <div class="benefits__right-item">
+                                    <div class="add"></div>
+                                </div>
+                            
+                                <div class="benefits__right-item">
+                                    Устойчивость к
+                                    стерилезации
+                                    <div class="add"></div>
+                                </div>
+                            
+                                <div class="benefits__right-item">
+                                    Широкий aссортимент,  возможно подобрать инструмент вашим потребностям
+                                    <div class="add"></div>
+                                </div>
+                            
+                                <div class="benefits__right-item">
+                                    <div class="add"></div>
+                                </div>
+                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="series">
+            <div class="default-container">
+                <div class="series__wrapper">
+                    <div class="series__title style1">
+                        Наши маникюрные инструменты делятся на две серии
+                    </div>
+
+                    <div class="series__wrapper-column">
+
+                        <a href="#" class="series__wrapper-item">
+                            <div class="series__img">
+                                <div class="series__img-bg">
+                                    <img src="img/home/series_bg1.jpg" alt="seria1">
+                                </div>
+                                
+                            </div>
+                            <div class="series__img-seria">
+                                <img src="img/home/seria1.png" alt="">
+                            </div>
+                            <div class="series__body">
+                                <div class="series__body-title style1">
+                                    Серия Prestige
+                                </div>
+                                <ul class="series__body-list style3">
+                        
+                                    <li class="series__body-item">
+                                        Высококачественная нержавеющая сталь
+                                    </li>
+                        
+                                    <li class="series__body-item">
+                                        Твёрдость 42-46 HRC
+                                    </li>
+                        
+                                    <li class="series__body-item">
+                                        Ручная заточка
+                                    </li>
+                        
+                                    <li class="series__body-item">
+                                        Для профессионального и индивидуального использования
+                                    </li>
+                        
+                                </ul>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="series__wrapper-item">
+                            <div class="series__img">
+                                <div class="series__img-bg">
+                                    <img src="img/home/series_bg2.jpg" alt="seria1">
+                                </div>
+                            </div>
+                            <div class="series__img-seria">
+                                <img src="img/home/seria2.png" alt="">
+                            </div>
+                            <div class="series__body">
+                                <div class="series__body-title style1">
+                                    Серия Master Lab
+                                </div>
+                                <ul class="series__body-list">
+                        
+                                    <li class="series__body-item">
+                                        Высококачественная японская нержавеющая сталь повышенной твёрдости
+                                    </li>
+                        
+                                    <li class="series__body-item">
+                                        Твёрдость 46-50 HRC
+                                    </li>
+                        
+                                    <li class="series__body-item">
+                                        Ручная заточка
+                                    </li>
+                        
+                                    <li class="series__body-item">
+                                        Для профессионального и индивидуального использования
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </a>
+
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </section>
+
+        <section class="list-center">
+            <div class="list">
+               <div class="default-container">
+                  <div class="list__wrapper">
+                     <div class="list__title style1">Для получения прайс-листа<span></span> </div>
+                     <div class="list__subtitle style2">
+                        Оставьте заявку и мы предоставим вам нужные образцы
+                     </div>
+                     <form action="#" class="list__form">
+                        <input required class="list__form-item form-name style4" type="name" placeholder="Имя">
+                        <input required class="list__form-item form-email style4" type="email" placeholder="E-mail">
+                        <input required class="list__form-item form-tel style4 mask-phone" type="tel" placeholder="Телефон">
+                        <input class="list__form-item button style3" type="submit" value="Получить прайс-лист">
+                        <div class="list__text-body">
+                           <p class="list__text style4">
+                              Нажимая кнопку “Получить прайс-лист”, вы соглашаетесь с <a href="#">правилами обработки</a> ваших персональных
+                              данных.
+                           </p>
+                        </div>
+                        
+                     </form>
+                  </div>
+               </div>
+            </div>
+            
+            
+        </section>
+        
+
+        <section class="cooperation">
+            <div class="default-container">
+                <div class="cooperation__wrapper">
+                    <div class="cooperation__title style1">
+                        Почему оптовые клиенты сотрудничают именно с нами?
+                    </div>
+                    
+                    <div class="cooperation__body">
+                        <div class="cooperation__row">
+                            <div class="cooperation__item">
+                                <div class="cooperation__item-icon">
+                                    <img src="img/home/cooperation/1.png" alt="cooperation">
+                                </div>
+                                <div class="cooperation__item-text style3">
+                                    Рекламная поддержка наших клиентов
+                                </div>
+                            </div>
+                            
+                            <div class="cooperation__item">
+                                <div class="cooperation__item-icon">
+                                    <img src="img/home/cooperation/2.png" alt="cooperation">
+                                </div>
+                                <div class="cooperation__item-text style3">
+                                    Предоставление образцов по самой низкой цене
+                                </div>
+                            </div>
+                            
+                            <div class="cooperation__item">
+                                <div class="cooperation__item-icon">
+                                    <img src="img/home/cooperation/3.png" alt="cooperation">
+                                </div>
+                                <div class="cooperation__item-text style3">
+                                    Эксклюзивность в регионе при заключении договора на определенный объем продаж
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cooperation__row">
+                            <div class="cooperation__item">
+                                <div class="cooperation__item-icon">
+                                    <img src="img/home/cooperation/4.png" alt="cooperation">
+                                </div>
+                                <div class="cooperation__item-text style3">
+                                    Накопительная система скидок
+                                </div>
+                            </div>
+                            
+                            <div class="cooperation__item">
+                                <div class="cooperation__item-icon">
+                                    <img src="img/home/cooperation/5.png" alt="cooperation">
+                                </div>
+                                <div class="cooperation__item-text style3">
+                                    Обмен товара на более предпочтительный в вашем регионе
+                                </div>
+                            </div>
+                            
+                            <div class="cooperation__item">
+                                <div class="cooperation__item-icon">
+                                    <img src="img/home/cooperation/6.png" alt="cooperation">
+                                </div>
+                                <div class="cooperation__item-text style3">
+                                    Возможность заказа маленькой партии от 5000 рублей
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="cooperation__row">
+                            <div class="cooperation__item">
+                                <div class="cooperation__item-icon">
+                                    <img src="img/home/cooperation/7.png" alt="cooperation">
+                                </div>
+                                <div class="cooperation__item-text style3">
+                                    Обучим продавать ваших сотрудников, проэкзаменуем и предоставим отчет руководству
+                            
+                                </div>
+                            </div>
+                            
+                            <div class="cooperation__item">
+                                <div class="cooperation__item-icon">
+                                    <img src="img/home/cooperation/8.png" alt="cooperation">
+                                </div>
+                                <div class="cooperation__item-text style3">
+                                    Доставка по всей России
+                                </div>
+                            </div>
+                            
+                            <div class="cooperation__item">
+                                <div class="cooperation__item-icon">
+                                    <img src="img/home/cooperation/9.png" alt="cooperation">
+                                </div>
+                                <div class="cooperation__item-text style3">
+                                    Бесплатная доставка по Москве
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <section class="about">
+            <div class="default-container">
+                <div class="about__wrapper">
+                    <div class="about__title style1">О компании</div>
+                    <div class="about__text style4">
+                        <p class="about__text-mobille">
+                            В компании «Lazeti» работают лучшие мастера России в области заточки маникюрного инструмента, которые много лет
+                            проработали на оборонных и ювелирных предприятиях. В своей работе мы используем итальянское и немецкое заточное
+                            оборудование и оснастку.
+                            <a data-toggle="collapse" href="#collapseAboutText" role="button" aria-expanded="false"
+                                aria-controls="collapseExample">
+                                Показать ещё
+                            </a>
+
+                            <div class="collapse about__text" id="collapseAboutText">
+                                <p class="about__text about__text-mobille">
+                                    Наши полировальные работы производятся по самым наивысшим ювелирным стандартам с применением
+                                    дорогостоящих полировальных паст. Весь маникюрный инструмент проходит тщательный контроль качества с применением
+                                    современного лабораторного оборудования. Нержавеющая сталь, применяемая в маникюрном инструменте «Lazeti» имеет лучшие
+                                    показатели по твердости и химической коррозионной устойчивости.
+                                </p>
+                                
+                                <p class="about__text about__text-mobille">
+                                    Маникюрный инструмент «Lazeti», в первую очередь, предназначен для профессионалов, которым нужна профессиональная
+                                    ручная
+                                    заточка маникюрного инструмента, но он также украсит любой маникюрный набор искушенного пользователя, который ценит
+                                    качество.
+                                </p>
+                            </div>
+                        </p>
+
+
+                        <p class="about__text-decktop"> 
+                            В компании «Lazeti» работают лучшие мастера России в области заточки маникюрного инструмента, которые много лет
+                            проработали на оборонных и ювелирных предприятиях. В своей работе мы используем итальянское и немецкое заточное
+                            оборудование и оснастку.
+                            Наши полировальные работы производятся по самым наивысшим ювелирным стандартам с применением
+                            дорогостоящих полировальных паст. Весь маникюрный инструмент проходит тщательный контроль качества с применением
+                            современного лабораторного оборудования. Нержавеющая сталь, применяемая в маникюрном инструменте «Lazeti» имеет лучшие
+                            показатели по твердости и химической коррозионной устойчивости.
+                        </p>
+
+                        <p  class="about__text-decktop">
+                            Маникюрный инструмент «Lazeti», в первую очередь, предназначен для профессионалов, которым нужна профессиональная ручная
+                            заточка маникюрного инструмента, но он также украсит любой маникюрный набор искушенного пользователя, который ценит
+                            качество.
+                        </p>
+                    </div>
+                    <div class="about__image">
+                        <img src="img/home/about.jpg" alt="about">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="list-end">
+            <div class="list">
+               <div class="default-container">
+                  <div class="list__wrapper">
+                     <div class="list__title style1">Для получения прайс-листа<span></span> </div>
+                     <div class="list__subtitle style2">
+                        Оставьте заявку и мы предоставим вам нужные образцы
+                     </div>
+                     <form action="#" class="list__form">
+                        <input required class="list__form-item form-name style4" type="name" placeholder="Имя">
+                        <input required class="list__form-item form-email style4" type="email" placeholder="E-mail">
+                        <input required class="list__form-item form-tel style4 mask-phone" type="tel" placeholder="Телефон">
+                        <input class="list__form-item button style3" type="submit" value="Получить прайс-лист">
+                        <div class="list__text-body">
+                           <p class="list__text style4">
+                              Нажимая кнопку “Получить прайс-лист”, вы соглашаетесь с <a href="#">правилами обработки</a> ваших персональных
+                              данных.
+                           </p>
+                        </div>
+                        
+                     </form>
+                  </div>
+               </div>
+            </div>
+            
+            
+        </section>
+        
+
+          
+    </main>
+    <footer class="footer">
+       <div class="default-container">
+          <div class="footer__wrapper">
+          
+             <div class="footer__left">
+                <div class="footer__about">
+          
+                   <div class="footer__logo">
+                      <a href="#">
+                         LAZETI
+                      </a>
+                   </div>
+          
+                   <div class="footer__description">
+                      Безупречная заточка для качественного и быстрого маникюра
+                   </div>
+          
+                   <div class="footer__social">
+                      <div class="footer__vk">
+                         <a href="#">
+                            <img src="img/footer/vk.png" alt="vk">
+                         </a>
+                      </div>
+                      <div class="footer__facebook">
+                         <a href="#">
+                            <img src="img/footer/facebook.png" alt="facebook">
+                         </a>
+                      </div>
+                      <div class="footer__instagram">
+                         <a href="#">
+                            <img src="img/footer/instagram.png" alt="instagram">
+                         </a>
+                      </div>
+                   </div>
+          
+                   <div class="footer__price">
+                      <a href="#" data-toggle="modal" data-target="#getList">
+                         Скачать прайс-лист
+                      </a>
+                   </div>
+          
+                   <div class="footer__politic">
+                      <a href="#">
+                         Политика конфиденциальности
+                      </a>
+                   </div>
+          
+                </div>
+                <div class="footer__menu">
+                   <nav>
+                      <ul class="footer__menu-items">
+                         <li class="footer__menu-item"><a href="#">Каталог</a></li>
+                         <li class="footer__menu-item"><a href="#">Акции</a></li>
+                         <li class="footer__menu-item"><a href="#">Блог</a></li>
+                         <li class="footer__menu-item"><a href="#">Контакты</a></li>
+                         <li class="footer__menu-item"><a href="#">Где купить</a></li>
+                         <li class="footer__menu-item"><a href="#">Доставка и оплата</a></li>
+                         
+                         <li class="footer__politic">
+                            <a href="#">Политика конфиденциальности</a>
+                         </li>
+                         <li class="footer__price"><a href="#" data-toggle="modal" data-target="#getList">Скачать прайс-лист</a> </li>
+                      </ul>
+                   </nav>
+                </div>
+             </div>
+          
+             <div class="footer__right">
+                <div class="footer__contacts">
+                   <ul class="footer__contacts-items">
+                      <li class="footer__contacts-item">
+                         Контакты
+                      </li>
+          
+                      <li class="footer__contacts-item">
+                         <a href="tel:+7 (499) 112-09-77">+7 (499) 112-09-77</a>
+                      </li>
+          
+                      <li class="footer__contacts-item">
+                         <a href="#">Москва, ул. Тверская, д. 7</a>
+                      </li>
+          
+                      <li class="footer__contacts-item">
+                         <a href="mailto:Info@lazeti.ru">Info@lazeti.ru</a>
+                      </li>
+          
+                      <li class="footer__contacts-item">
+                         Пн-Пт: с 10:00 до 18:00
+                      </li>
+          
+                      <li class="footer__contacts-item">
+                         <a href="#" data-toggle="modal" data-target="#getPhone">Обратный звонок</a>
+                      </li>
+          
+                   </ul>
+                </div>
+             </div>
+          
+          </div>
+       </div>
+    </footer>
+<!-- Vendor scripts plugins -->
+<!-- build:js js/plugins.js -->
+<script src="vendor/jquery/dist/jquery.js"></script>
+<script src="vendor/svg4everybody/dist/svg4everybody.min.js"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+   integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+   
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+   integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+   integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+<!-- endbuild -->
+<!-- Scripts application -->
+
+<!-- mask-->
+<script src="../../../../bower_components/jquery.maskedinput/dist/jquery.maskedinput.min.js"></script>
+<!--select2-->
+<script src="../../../../bower_components/select2/dist/js/select2.min.js"></script>
+
+<script src="js/script.js" inline></script>
+</body>
+</html>
